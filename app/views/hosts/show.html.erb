@@ -1,1 +1,18 @@
-<h1><%= @host.first_name %><%= @host.last_name %></h1>
+<h1><%= @host.first_name %> <%= @host.last_name %></h1>
+
+<h2>Rooms:</h2>
+  <% @host.rooms.each do |room| %>
+    <td><%=room.title %></td>
+    <td><%=room.description %></td>
+  <% end %>
+
+<%= link_to "Edit", edit_host_path(@host) %>
+
+<%= link_to "Add room", new_host_room_path(@host) %>
+
+
+
+<%= link_to "Delete",
+  host_path(@host),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
