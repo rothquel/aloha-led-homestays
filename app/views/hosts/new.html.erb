@@ -1,0 +1,31 @@
+<h1>Add new host:</h1>
+
+<%= simple_form_for(@host) do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :marital_status %>
+  <%= f.input :date_of_birth %>
+  <%= f.input :occupation %>
+  <%= f.input :employer %>
+  <%= f.input :home_address %>
+  <%= f.input :email %>
+  <%= f.input :home_phone_number %>
+  <%= f.input :work_phone_number %>
+  <%= f.input :student_gender_preference %>
+  <%= f.input :smoking_permitted %>
+  <%= f.input :student_capacity %>
+  <%= f.input :internet_access %>
+  <%= f.input :pets %>
+  <%= f.input :pets_list %>
+  <%= f.input :languages %>
+  <%= f.input :reason %>
+  <%= f.input :special_interests %>
+  <%= f.input :health_concerns %>
+  <%= f.input :criminal_background %>
+  <%= f.input :criminal_background_detail %>
+  <%= f.input :agree_to_terms %>
+  <%= f.input :children %>
+  <%= f.input :children_list%>
+  <%= f.input :other_residents %>
+  <%= f.submit %>
+<% end %>
