@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_25_015352) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_065914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,8 +86,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_015352) do
     t.string "emergency_contact_relationship"
     t.string "emergency_contact_phone"
     t.string "emergency_contact_email"
-    t.string "host_family_preferences_kids"
-    t.string "host_family_preferences_pets"
     t.boolean "allergies"
     t.string "allergies_details"
     t.string "hobbies"
@@ -96,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_015352) do
     t.string "arriving_flight_number"
     t.datetime "departure_from_hawaii"
     t.string "returning_flight_number"
+    t.boolean "host_family_preferences_kids"
+    t.boolean "host_family_preferences_pets"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,32 +1,73 @@
 <%= simple_form_for(@student) do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :gender %>
+  <h4 class="pb-3">Student details:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :first_name, label: 'Student first name' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :last_name, label: 'Student last name' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+       <%= f.input :email, label: 'Student email address' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :phone_number, label: 'Student phone number' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+       <%= f.input :line_account, label: 'Student line account' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :gender, as: :select, collection: ['male', 'female'] %>
+    </div>
+  </div>
   <%= f.input :date_of_birth,
                 as: :date,
                 start_year: Date.today.year - 40,
                 end_year: Date.today.year - 1,
                 order: [:day, :month, :year] %>
   <%= f.input :home_address %>
-  <%= f.input :email %>
-  <%= f.input :phone_number %>
-  <%= f.input :line_account %>
-  <%= f.input :occupation %>
-  <%= f.input :school_in_japan %>
-  <%= f.input :program_in_hawaii %>
-  <%= f.input :emergency_contact_name %>
-  <%= f.input :emergency_contact_relationship %>
-  <%= f.input :emergency_contact_phone %>
-  <%= f.input :emergency_contact_email %>
-  <%= f.input :host_family_preferences_kids %>
-  <%= f.input :host_family_preferences_pets %>
-  <%= f.input :allergies %>
-  <%= f.input :allergies_details %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :occupation %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :school_in_japan %>
+    </div>
+  </div>
+  <hr>
+  <h4 class="py-3">Emergency contact details:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_name %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_relationship %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_phone %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_email %>
+    </div>
+  </div>
+  <hr>
+  <h4 class="py-3">Stay details:</h4>
   <%= f.input :hobbies %>
-  <%= f.input :smoker %>
+  <%= f.input :allergies, label: 'Does the student have any allergies?' %>
+  <%= f.input :allergies_details %>
+  <%= f.input :host_family_preferences_pets, label: 'Is the student OK in a house with pets?' %>
+  <%= f.input :host_family_preferences_kids, label: 'Is the student OK in a house with other children under 18?' %>
+  <%= f.input :smoker, label: 'Does the student smoke?' %>
+  <%= f.input :program_in_hawaii %>
   <%= f.input :arrival_in_hawaii %>
   <%= f.input :arriving_flight_number %>
   <%= f.input :departure_from_hawaii %>
   <%= f.input :returning_flight_number %>
-  <%= f.submit %>
+  <%= f.submit class: "btn btn-warning" %>
 <% end %>
