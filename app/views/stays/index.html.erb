@@ -1,0 +1,30 @@
+<div class="container py-5">
+  <h1 class="text-center">All stays</h1>
+    <p class="pb-5 text-center"><%= link_to "Add new student here", new_student_path %></p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Host Name</th>
+          <th scope="col">Room</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stays.each do |stay| %>
+          <tr>
+            <th scope="row"><%=stay.id %></th>
+            <td><%= stay.student.first_name %> <%= stay.student.last_name %></td>
+            <td><%=stay.host.first_name %> <%=stay.host.last_name %></td>
+            <td><%=stay.room.title %></td>
+            <td><%=stay.student.arrival_in_hawaii.strftime("%B %e %Y") %></td>
+            <td><%=stay.student.departure_from_hawaii.strftime("%B %e %Y") %></td>
+            <td><%= link_to "View more", stays_path(stay) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

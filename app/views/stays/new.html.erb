@@ -1,0 +1,6 @@
+<%= simple_form_for @stay do |f| %>
+  <%= f.input :student_id, collection: Student.all, prompt: "Select a student" %>
+  <%= f.input :host_id, collection: Host.all, prompt: "Select a host" %>
+  <%= f.input :room_id, collection: Room.all, prompt: "Select a room" %>
+  <%= f.submit "Create Stay" %>
+<% end %>

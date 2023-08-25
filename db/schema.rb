@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_044653) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_25_015352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_044653) do
     t.index ["host_id"], name: "index_rooms_on_host_id"
   end
 
+  create_table "stays", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "student_id"
+    t.bigint "host_id"
+    t.bigint "room_id"
+    t.index ["host_id"], name: "index_stays_on_host_id"
+    t.index ["room_id"], name: "index_stays_on_room_id"
+    t.index ["student_id"], name: "index_stays_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -100,4 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_044653) do
   end
 
   add_foreign_key "rooms", "hosts"
+  add_foreign_key "stays", "hosts"
+  add_foreign_key "stays", "rooms"
+  add_foreign_key "stays", "students"
 end
