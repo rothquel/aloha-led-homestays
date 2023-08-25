@@ -1,0 +1,17 @@
+<div class="container py-5">
+<h1 class="text-center"><%= @student.first_name %> <%= @student.last_name %></h1>
+<h4 class="text-center"><i class="fa-solid fa-phone fa-xs" style="color: #ffdd00;"></i> <%= @student.phone_number %> | <i class="fa-solid fa-envelope fa-xs" style="color: #ffdd00;"></i> <%= @student.email %></h4>
+<p class="text-center"><strong>Age:</strong> <%= @age %> years | <strong>DOB:</strong> <%= @student.date_of_birth.strftime("%d/%m/%Y") %></p>
+
+
+
+
+<div class="text-center">
+  <%= link_to "Edit", edit_student_path(@student) %>
+  <%= link_to "Delete",
+    host_path(@student),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+</div>
+
+</div>

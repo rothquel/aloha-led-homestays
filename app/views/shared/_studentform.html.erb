@@ -1,0 +1,32 @@
+<%= simple_form_for(@student) do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :gender %>
+  <%= f.input :date_of_birth,
+                as: :date,
+                start_year: Date.today.year - 40,
+                end_year: Date.today.year - 1,
+                order: [:day, :month, :year] %>
+  <%= f.input :home_address %>
+  <%= f.input :email %>
+  <%= f.input :phone_number %>
+  <%= f.input :line_account %>
+  <%= f.input :occupation %>
+  <%= f.input :school_in_japan %>
+  <%= f.input :program_in_hawaii %>
+  <%= f.input :emergency_contact_name %>
+  <%= f.input :emergency_contact_relationship %>
+  <%= f.input :emergency_contact_phone %>
+  <%= f.input :emergency_contact_email %>
+  <%= f.input :host_family_preferences_kids %>
+  <%= f.input :host_family_preferences_pets %>
+  <%= f.input :allergies %>
+  <%= f.input :allergies_details %>
+  <%= f.input :hobbies %>
+  <%= f.input :smoker %>
+  <%= f.input :arrival_in_hawaii %>
+  <%= f.input :arriving_flight_number %>
+  <%= f.input :departure_from_hawaii %>
+  <%= f.input :returning_flight_number %>
+  <%= f.submit %>
+<% end %>
