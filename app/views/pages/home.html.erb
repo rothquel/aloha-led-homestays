@@ -1,2 +1,15 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="login-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-4">
+        <div class="form-login">
+          <div class="row justify-content-center">
+            <%= image_tag "brand-icon.png", class: "login-logo py-3" %>
+          </div>
+          <h2>Log in</h2>
+            <%= render 'devise/sessions/login_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
