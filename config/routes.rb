@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :students, :stays
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :stays do
+    get 'rooms_for_host/:host_id', to: 'stays#rooms_for_host', on: :collection
+  end
 end

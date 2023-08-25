@@ -1,9 +1,15 @@
 <div class="container py-5">
   <h1 class="text-center pb-5">Create new stay</h1>
-  <%= simple_form_for @stay do |f| %>
-    <%= f.input :student_id, collection: Student.all.map { |student| ["#{student.first_name} #{student.last_name} (#{student.email})", student.id] }, prompt: "Select a student" %>
-    <%= f.input :host_id, collection: Host.all.map { |host| ["#{host.first_name} #{host.last_name} (#{host.email})", host.id] }, prompt: "Select a host" %>
-    <%= f.input :room_id, collection: Room.all, prompt: "Select a room" %>
-    <%= f.submit "Create Stay", class: "btn btn-primary" %>
-  <% end %>
+  <div data-controller="stay">
+    <%= simple_form_for @stay do |f| %>
+      <%= f.input :student_id, collection: Student.all.map { |student| ["#{student.first_name} #{student.last_name} (#{student.email})", student.id] }, prompt: "Select a student" %>
+      <div data-stay-target="hostSelect">
+        <%= f.input :host_id, collection: Host.all.map { |host| ["#{host.first_name} #{host.last_name} (#{host.email})", host.id] }, prompt: "Select a host", "data-stay-target": "hostSelect", "data-action": "change->stay#updateRooms" %>
+      </div>
+      <%# <div data-stay-target="roomSelect"> %>
+        <%= f.input :room_id, collection: [], prompt: "Select a room", input_html: { data: { target: 'stay.roomSelect' } } %>
+      <%# </div> %>
+      <%= f.submit "Create Stay", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
