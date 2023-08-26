@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :rooms
   end
 
-  resources :rooms, only: [:index, :show]
+  resources :rooms, only: [:index, :show, :edit, :update, :destroy]
 
   resources :students, :stays
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

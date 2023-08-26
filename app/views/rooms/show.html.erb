@@ -1,2 +1,47 @@
-<h1><%= @room.title %></h1>
-Host= <%= @room.host.first_name %>
+<div class="container-fluid py-5 room-bg d-flex justify-content-center align-items-center">
+  <div class="text-center bg-white p-5">
+    <h1 class="text-center"><%= @room.title %></h1>
+    <h4 class="text-center">Hosted by <%= @room.host.first_name %> <%= @room.host.last_name %></h4>
+  </div>
+</div>
+<div class="container py-5">
+  <h2 class="text-center pb-5">Room Details:</h2>
+  <p class="text-center"><strong>Room Type:</strong> <%= @room.private_room ? 'Private Room' : 'Shared Room' %></p>
+  <p class="text-center"><strong>Bathroom:</strong> <%= @room.bathroom %></p>
+  <p class="text-center"><strong>Location in house:</strong> <%= @room.location_in_house %></p>
+  <p class="text-center"><strong>Description:</strong> <%= @room.description %></p>
+  <p class="text-center"><%= link_to "Edit room", edit_room_path(@room) %> |
+    <%= link_to "Delete room",
+      room_path(@room),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %></p>
+</div>
+<div class="container-fluid bg-lightgrey py-5">
+  <h2 class="text-center pb-5">Bookings:</h2>
+  <% if @room.stay_ids.any? %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @room.stays.each do |stay| %>
+          <tr>
+            <th scope="row"><%= stay.id %></th>
+            <td><%= link_to "#{stay.student.first_name} #{stay.student.last_name}", student_path(stay.student) %></td>
+            <td><%=stay.student.arrival_in_hawaii.strftime("%e %B %Y") %></td>
+            <td><%=stay.student.departure_from_hawaii.strftime("%e %B %Y") %></td>
+            <td><%= link_to "View more", stay_path(stay) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center"><strong>This room has not been booked yet</strong></p>
+  <% end %>
+</div>

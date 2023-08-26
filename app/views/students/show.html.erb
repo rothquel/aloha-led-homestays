@@ -5,7 +5,7 @@
   <div class="text-center">
     <%= link_to "Edit student details", edit_student_path(@student) %> |
     <%= link_to "Delete student",
-      host_path(@student),
+      student_path(@student),
       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
     %>
   </div>

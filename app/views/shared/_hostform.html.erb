@@ -1,33 +1,111 @@
 <%= simple_form_for(@host) do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :marital_status %>
+    <div class="row">
+    <div class="col-md-6">
+      <%= f.input :first_name, label: 'First name' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :last_name, label: 'Last name' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :email, label: 'Email Address' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :home_phone_number, label: 'Primary Phone Number' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :work_phone_number, label: 'Secondary Phone Number (Work, Spouse etc)' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :marital_status, as: :select, collection: ['Married', 'Single', 'Other'], :include_blank => false %>
+    </div>
+  </div>
   <%= f.input :date_of_birth,
                 as: :date,
                 start_year: Date.today.year - 90,
                 end_year: Date.today.year - 12,
                 order: [:day, :month, :year] %>
-  <%= f.input :occupation %>
-  <%= f.input :employer %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :occupation, label: 'Occupation' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :employer, label: 'Employer' %>
+    </div>
+  </div>
   <%= f.input :home_address %>
-  <%= f.input :email %>
-  <%= f.input :home_phone_number %>
-  <%= f.input :work_phone_number %>
-  <%= f.input :student_gender_preference %>
-  <%= f.input :smoking_permitted %>
-  <%= f.input :student_capacity %>
-  <%= f.input :internet_access %>
-  <%= f.input :pets %>
-  <%= f.input :pets_list %>
-  <%= f.input :languages %>
-  <%= f.input :reason %>
-  <%= f.input :special_interests %>
-  <%= f.input :health_concerns %>
-  <%= f.input :criminal_background %>
+  <div class="row">
+    <div class="col-md-6">
+        <%= f.input :internet_access,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            label: 'Is internet access available in the house?' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :children,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            label: 'Are there other children under the age of 18 living in the house?' %>
+    </div>
+  </div>
+  <%= f.input :children_list, label: 'Please list their names and ages' %>
+  <%= f.input :other_residents, label: 'Please list any other family members or people living in the home and their relationship to the host' %>
+  <%= f.input :health_concerns, label: 'Please list any physical, mental or emotional health concerns or limitations of any resident in the house' %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :languages, label: 'Please list any languages other than English that are spoken in the home' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :pets,
+            :as => :select,
+            :collection => [['No',false],['Yes',true]],
+            :include_blank => false,
+            label: 'Are there any pets?' %>
+    </div>
+  </div>
+  <%= f.input :pets_list, label: 'Please list all pets in the house'  %>
+  <hr>
+  <h4 class="py-3">Hosting:</h4>
+  <div class="row">
+    <div class="col-md-6">
+          <%= f.input :student_gender_preference,
+            :as => :select,
+            :collection => ['No preference','Male only','Female only'],
+            :include_blank => false,
+            label: 'Do they have a student gender preference?' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :smoking_permitted,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            label: 'Will they accept an outside smoker?' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+          <%= f.input :special_interests,
+            label: 'Does their family have any special interests or enjoy any particular activity or sport?' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :criminal_background,
+            :as => :select,
+            :collection => [['No',false],['Yes',true],],
+            :include_blank => false,
+            label: 'Has any resident in the house ever been convicted of a crime?' %>
+    </div>
+  </div>
   <%= f.input :criminal_background_detail %>
-  <%= f.input :agree_to_terms %>
-  <%= f.input :children %>
-  <%= f.input :children_list%>
-  <%= f.input :other_residents %>
-  <%= f.submit %>
+  <%= f.input :reason, label: 'Why does their family want to host a foreign student?' %>
+  <%= f.input :agree_to_terms,
+            :as => :select,
+            :collection => [['No',false],['Yes',true],],
+            :include_blank => false,
+            label: 'Do they agree to the terms?' %>
+  <%= f.submit class: "btn btn-warning" %>
 <% end %>

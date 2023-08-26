@@ -29,8 +29,11 @@ class RoomsController < ApplicationController
 
   def update
     @room = Room.find(params[:id])
-    @Room.update(room_params)
-    redirect_to room_path(@room)
+    if @room.update(room_params)
+      redirect_to room_path(@room)
+    else
+      render 'rooms/edit', status: :unprocessable_entity
+    end
   end
 
   def destroy

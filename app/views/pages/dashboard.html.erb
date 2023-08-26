@@ -1,4 +1,50 @@
 <div class="container py-5">
   <h1 class="text-center pb-2">Welcome to your dashboard, <%= current_user.first_name %></h1>
   <p class="text-center pb-5">It's a <strong>beautiful</strong> day to get things done.</p>
+  <div class="container">
+    <div class="row pb-5">
+      <div class="col-md-4">
+        <div class="bg-light p-4 text-center">
+          <p>Total Hosts</p>
+          <h1><%= @total_hosts %></h1>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-light p-4 text-center">
+          <p>Total Rooms</p>
+          <h1><%= @total_rooms %></h1>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-light p-4 text-center">
+          <p>Stays starting in the next 7 days</p>
+          <h1><%= @upcoming_stays %></h1>
+        </div>
+      </div>
+    </div>
+    <h4 class="text-center pb-3">These students do not yet have a stay confirmed and need your attention:</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Student Name</th>
+          <th scope="col">Arrival Date</th>
+          <th scope="col">Departure Date</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @students_without_stay.each do |student| %>
+      <tr>
+        <th scope="row"><%= student.id %></th>
+        <td><%=student.first_name %> <%=student.last_name %></td>
+        <td><%=student.arrival_in_hawaii.strftime("%e %B %Y") %></td>
+        <td><%=student.departure_from_hawaii.strftime("%e %B %Y") %></td>
+        <td><%= link_to "View more", student_path(student) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  </div>
+
 </div>

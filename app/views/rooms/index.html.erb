@@ -7,10 +7,10 @@
         <th scope="col">#</th>
         <th scope="col">Host</th>
         <th scope="col">Title</th>
-        <th scope="col">Location in house</th>
-        <th scope="col">Bathroom</th>
         <th scope="col">Private room</th>
-        <th scope="col">Details</th>
+        <th scope="col">Smoking allowed</th>
+        <th scope="col">Children in house</th>
+        <th scope="col">Pets in house</th>
       </tr>
     </thead>
     <tbody>
@@ -19,13 +19,26 @@
           <th scope="row"><%= room.id %></th>
           <td><%=room.host.first_name %> <%=room.host.last_name %></td>
           <td><%=room.title %></td>
-          <td><%=room.location_in_house %></td>
-          <td><%=room.bathroom %></td>
           <td><% if room.private_room == true %>
               <i class="fa-solid fa-circle-check" style="color: #1EDD88;"></i>
               <% else %>
               <i class="fa-solid fa-circle-xmark" style="color: #FD1015;"></i>
             <% end %></td>
+          <td><% if room.host.smoking_permitted == true %>
+              <i class="fa-solid fa-circle-check" style="color: #1EDD88;"></i>
+              <% else %>
+              <i class="fa-solid fa-circle-xmark" style="color: #FD1015;"></i>
+            <% end %></td>
+          <td><% if room.host.children == true %>
+                <i class="fa-solid fa-circle-check" style="color: #1EDD88;"></i>
+              <% else %>
+                <i class="fa-solid fa-circle-xmark" style="color: #FD1015;"></i>
+              <% end %></td>
+            <td><% if room.host.pets == true %>
+                <i class="fa-solid fa-circle-check" style="color: #1EDD88;"></i>
+              <% else %>
+                <i class="fa-solid fa-circle-xmark" style="color: #FD1015;"></i>
+              <% end %></td>
           <td><%= link_to "View more", room_path(room) %></td>
         </tr>
       <% end %>

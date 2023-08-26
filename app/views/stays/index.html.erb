@@ -22,7 +22,7 @@
             <td><%=stay.room.title %></td>
             <td><%=stay.student.arrival_in_hawaii.strftime("%B %e %Y") %></td>
             <td><%=stay.student.departure_from_hawaii.strftime("%B %e %Y") %></td>
-            <td><%= link_to "View more", stays_path(stay) %></td>
+            <td><%= link_to "View more", stay_path(stay) %></td>
           </tr>
         <% end %>
       </tbody>
