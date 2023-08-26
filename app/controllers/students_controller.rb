@@ -21,7 +21,7 @@ class StudentsController < ApplicationController
       if user_signed_in?
         redirect_to student_path(@student) # Redirect to a different page if needed
       else
-        redirect_to success_path # Redirect to the success page
+        redirect_to student_success_path # Redirect to the success page
       end
     else
       render 'new' # Render the form again if there are validation errors

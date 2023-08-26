@@ -15,4 +15,5 @@ class Student < ApplicationRecord
 
     age
   end
+
 end

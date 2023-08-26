@@ -1,0 +1,26 @@
+<%= simple_form_for([@host, @room]) do |f| %>
+  <%= f.input :title, label: "Please give the room a title that the host will understand - eg. 'Frodo's Bedroom 1' or 'Upstairs East bedroom'" %>
+  <%= f.input :description, label: "Description of the room" %>
+  <div class="row">
+    <div class="col-md-6">
+        <%= f.input :private_room,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            label: 'Is it a private room?' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :bathroom,
+            :as => :select,
+            :collection => ['Bathroom is private - only the student will use it', 'Bathroom may be shared with other students', 'Bathroom may be shared with other family members in the house'],
+            :include_blank => false,
+            label: 'What is the bathroom situation?' %>
+    </div>
+  </div>
+  <%= f.input :location_in_house,
+            :as => :select,
+            :collection => ['Upstairs', 'Main floor', 'Downstairs/basement'],
+            :include_blank => false,
+            label: 'Where is the room located in the house?' %>
+  <%= f.submit 'Add room', class: "btn btn-warning" %>
+<% end %>

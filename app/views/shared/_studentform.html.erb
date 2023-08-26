@@ -57,14 +57,48 @@
     </div>
   </div>
   <hr>
-  <h4 class="py-3">Stay details:</h4>
-  <%= f.input :hobbies %>
-  <%= f.input :allergies, label: 'Does the student have any allergies?' %>
-  <%= f.input :allergies_details %>
-  <%= f.input :host_family_preferences_pets, label: 'Is the student OK in a house with pets?' %>
-  <%= f.input :host_family_preferences_kids, label: 'Is the student OK in a house with other children under 18?' %>
-  <%= f.input :smoker, label: 'Does the student smoke?' %>
-  <%= f.input :program_in_hawaii %>
+    <h4 class="py-3">Stay details:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :host_family_preferences_pets,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            :label => "Can the stuent stay in a house with pets?" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :host_family_preferences_kids,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            :label => "Can the student stay in a house with other children under 18?" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :smoker,
+            :as => :select,
+            :collection => [['No',false],['Yes',true]],
+            :include_blank => false,
+            :label => "Does the student smoke?" %>
+    </div>
+    <div class="col-md-6" data-controller="student-form">
+      <%= f.input :allergies,
+        :as => :select,
+        :collection => [['No', false], ['Yes', true]],
+        :include_blank => false,
+        :label => "Do they have any allergies?",
+        data: { action: "change->student-form#toggleAllergyDetails" } %>
+    </div>
+
+    <div class="col-md-12" data-student-form-target="allergyDetails">
+      <%= f.input :allergies_details, label: 'If yes, please provide details of the allergies' %>
+    </div>
+  </div>
+
+  <%= f.input :hobbies, label: 'What are some of their main interests and hobbies?' %>
+  <%= f.input :program_in_hawaii, label: 'What school or program are they attending (or planning to attend) in Hawaii?' %>
+  <p><strong>If they have booked their flights, please enter the details below.</strong> If not, please enter the dates they are intending to be in Hawaii for.</p>
   <%= f.input :arrival_in_hawaii %>
   <%= f.input :arriving_flight_number %>
   <%= f.input :departure_from_hawaii %>

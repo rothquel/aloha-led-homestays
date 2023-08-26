@@ -4,6 +4,11 @@ class PagesController < ApplicationController
   layout 'home'
 
   def home
+    if user_signed_in?
+      redirect_to dashboard_path
+    else
+
+    end
   end
 
   def student
@@ -11,6 +16,7 @@ class PagesController < ApplicationController
   end
 
   def host
+    @host = Host.new
   end
 
   def success

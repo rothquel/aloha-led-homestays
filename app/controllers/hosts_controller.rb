@@ -14,7 +14,7 @@ class HostsController < ApplicationController
   def create
     @host = Host.new(host_params)
     @host.save
-    redirect_to host_path(@host)
+    redirect_to new_host_room_path(host_id: @host.id)
   end
 
   def edit

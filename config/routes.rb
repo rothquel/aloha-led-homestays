@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
   get '/student-form', to: 'pages#student', as: 'student-form'
   get '/host-form', to: 'pages#host', as: 'host-form'
-  get '/success', to: 'pages#success', as: 'success'
+  get '/student-success', to: 'pages#success', as: 'student-success'
   post '/student-form', to: 'students#create'
 
   resources :hosts do

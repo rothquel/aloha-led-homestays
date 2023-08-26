@@ -1,0 +1,113 @@
+<%= simple_form_for(@host) do |f| %>
+  <h4 class="pb-3">Your details:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :first_name, label: 'First name' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :last_name, label: 'Last name' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :email, label: 'Email Address' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :home_phone_number, label: 'Primary Phone Number' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :work_phone_number, label: 'Secondary Phone Number if you have (work, spouse etc)' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :marital_status, as: :select, collection: ['Married', 'Single', 'Other'], :include_blank => false %>
+    </div>
+  </div>
+  <%= f.input :date_of_birth,
+                as: :date,
+                start_year: Date.today.year - 90,
+                end_year: Date.today.year - 12,
+                order: [:day, :month, :year] %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :occupation, label: 'Occupation' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :employer, label: 'Employer' %>
+    </div>
+  </div>
+  <%= f.input :home_address %>
+  <div class="row">
+    <div class="col-md-6">
+        <%= f.input :internet_access,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            label: 'Is internet access available in the house?' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :children,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            label: 'Are there other children under the age of 18 living in the house?' %>
+    </div>
+  </div>
+  <%= f.input :children_list, label: 'Please list their names and ages' %>
+  <%= f.input :other_residents, label: 'Please list any other family members or people living in your home and their relationship to you' %>
+  <%= f.input :health_concerns, label: 'Please list any physical, mental or emotional health concerns or limitations of any resident in the house' %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :languages, label: 'Please list any languages other than English that are spoken at home' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :pets,
+            :as => :select,
+            :collection => [['No',false],['Yes',true]],
+            :include_blank => false,
+            label: 'Do you have any pets?' %>
+    </div>
+  </div>
+  <%= f.input :pets_list, label: 'Please list all pets in the house'  %>
+  <hr>
+  <h4 class="py-3">Hosting:</h4>
+  <div class="row">
+    <div class="col-md-6">
+          <%= f.input :student_gender_preference,
+            :as => :select,
+            :collection => ['No preference','Male only','Female only'],
+            :include_blank => false,
+            label: 'Do you have a student gender preference?' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :smoking_permitted,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            label: 'Will you accept an outside smoker? (smoking is never permitted in the home)' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+          <%= f.input :special_interests,
+            label: 'Does your family have any special interests or enjoy any particular activity or sport?' %>
+    </div>
+    <div class="col-md-6">
+          <%= f.input :criminal_background,
+            :as => :select,
+            :collection => [['No',false],['Yes',true],],
+            :include_blank => false,
+            label: 'Has any resident in the house ever been convicted of a crime?' %>
+    </div>
+  </div>
+  <%= f.input :criminal_background_detail %>
+  <%= f.input :reason, label: 'Why does your family want to host a foreign student?' %>
+  <p><strong>ALOHA LED HOMESTAY</strong> reserves the right to use its own discretion when selecting prospective host families. Applications that contain erroneous or false information are subjected to annulment. <strong>ALOHA LED HOMESTAY</strong> and its agents will be held harmless from and against all claims, damages, actions, liability, and expense concerning loss of life, or personal property arising from hosting a student or participating in student programs.
+  <%= f.input :agree_to_terms,
+            :as => :select,
+            :collection => [['No',false],['Yes',true],],
+            :include_blank => false,
+            label: 'Do you agree to the terms above?' %>
+  <%= f.submit 'Apply', class: "btn btn-warning" %>
+<% end %>
