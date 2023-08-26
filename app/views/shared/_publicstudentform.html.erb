@@ -1,0 +1,107 @@
+<%= simple_form_for(@student) do |f| %>
+  <h4 class="pb-3">Your details:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :first_name, label: 'First name' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :last_name, label: 'Last name' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+       <%= f.input :email, label: 'Your email address' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :phone_number, label: 'Your phone number' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+       <%= f.input :line_account, label: 'Your line account' %>
+    </div>
+    <div class="col-md-6">
+        <%= f.input :gender, as: :select, collection: ['Male', 'Female'], :include_blank => false %>
+    </div>
+  </div>
+  <%= f.input :date_of_birth,
+                as: :date,
+                start_year: Date.today.year - 40,
+                end_year: Date.today.year - 1,
+                order: [:day, :month, :year] %>
+  <%= f.input :home_address %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :occupation, as: :select, collection: ['High School Student', 'College Student', 'Other'], :include_blank => false %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :school_in_japan, label: 'What school do you attend in Japan?' %>
+    </div>
+  </div>
+  <hr>
+  <h4 class="py-3">Emergency contact details:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_name %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_relationship, collection: ['Mother', 'Father', 'Sibling', 'Grandparent', 'Carer', 'Other'] %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_phone %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :emergency_contact_email %>
+    </div>
+  </div>
+  <hr>
+  <h4 class="py-3">Stay details:</h4>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :host_family_preferences_pets,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            :label => "Are you OK to stay in a house with pets?" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :host_family_preferences_kids,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            :label => "Are you OK to stay in a house with other children under 18?" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :smoker,
+            :as => :select,
+            :collection => [['No',false],['Yes',true]],
+            :include_blank => false,
+            :label => "Do you smoke?" %>
+    </div>
+    <div class="col-md-6" data-controller="student-form">
+      <%= f.input :allergies,
+        :as => :select,
+        :collection => [['No', false], ['Yes', true]],
+        :include_blank => false,
+        :label => "Do you have any allergies?",
+        data: { action: "change->student-form#toggleAllergyDetails" } %>
+    </div>
+
+    <div class="col-md-12" data-student-form-target="allergyDetails">
+      <%= f.input :allergies_details, label: 'If yes, please provide details of your allergies' %>
+    </div>
+  </div>
+
+  <%= f.input :hobbies, label: 'What are some of your main interests and hobbies?' %>
+  <%= f.input :program_in_hawaii, label: 'What school or program are you attending (or planning to attend) in Hawaii?' %>
+  <p><strong>If you have booked your flights, please enter your details below.</strong> If not, please enter the dates you are intending to be in Hawaii for.</p>
+  <%= f.input :arrival_in_hawaii %>
+  <%= f.input :arriving_flight_number %>
+  <%= f.input :departure_from_hawaii %>
+  <%= f.input :returning_flight_number %>
+  <%= f.submit 'Apply', class: "btn btn-warning" %>
+<% end %>

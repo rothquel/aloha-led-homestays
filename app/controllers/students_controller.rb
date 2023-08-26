@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :create ]
+
   def index
     @students = Student.all
   end
@@ -14,8 +16,16 @@ class StudentsController < ApplicationController
 
   def create
     @student = Student.new(student_params)
-    @student.save
-    redirect_to student_path(@student)
+    if @student.save
+      # Check if the referrer is the student form page
+      if user_signed_in?
+        redirect_to student_path(@student) # Redirect to a different page if needed
+      else
+        redirect_to success_path # Redirect to the success page
+      end
+    else
+      render 'new' # Render the form again if there are validation errors
+    end
   end
 
   def edit
