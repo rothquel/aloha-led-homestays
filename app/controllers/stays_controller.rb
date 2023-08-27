@@ -19,6 +19,21 @@ class StaysController < ApplicationController
     redirect_to stays_path(@stay)
   end
 
+  def update
+    @stay = Stay.find(params[:id])
+    if @stay.update(stay_params)
+      redirect_to stay_path(@stay)
+    else
+      render 'stays/edit', status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @stay = Stay.find(params[:id])
+    @stay.destroy
+    redirect_to stays_path, status: :see_other
+  end
+
   def rooms_for_host
     # Find the host by ID
     host = Host.find(params[:host_id])

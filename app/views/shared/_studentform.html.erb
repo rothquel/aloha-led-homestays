@@ -21,7 +21,7 @@
        <%= f.input :line_account, label: 'Student line account' %>
     </div>
     <div class="col-md-6">
-        <%= f.input :gender, as: :select, collection: ['male', 'female'] %>
+        <%= f.input :gender, as: :select, collection: ['Male', 'Female'], :include_blank => false %>
     </div>
   </div>
   <%= f.input :date_of_birth,
@@ -32,7 +32,7 @@
   <%= f.input :home_address %>
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :occupation %>
+      <%= f.input :occupation, as: :select, collection: ['High School Student', 'College Student', 'Other'], :include_blank => false %>
     </div>
     <div class="col-md-6">
       <%= f.input :school_in_japan %>
@@ -45,7 +45,7 @@
       <%= f.input :emergency_contact_name %>
     </div>
     <div class="col-md-6">
-      <%= f.input :emergency_contact_relationship %>
+      <%= f.input :emergency_contact_relationship, collection: ['Mother', 'Father', 'Sibling', 'Grandparent', 'Carer', 'Other'] %>
     </div>
   </div>
   <div class="row">
@@ -64,7 +64,7 @@
             :as => :select,
             :collection => [['Yes',true],['No',false]],
             :include_blank => false,
-            :label => "Can the stuent stay in a house with pets?" %>
+            :label => "Can the student stay in a house with pets?" %>
     </div>
     <div class="col-md-6">
       <%= f.input :host_family_preferences_kids,

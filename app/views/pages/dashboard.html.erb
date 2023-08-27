@@ -22,29 +22,32 @@
         </div>
       </div>
     </div>
-    <h4 class="text-center pb-3">These students do not yet have a stay confirmed and need your attention:</h4>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Student Name</th>
-          <th scope="col">Arrival Date</th>
-          <th scope="col">Departure Date</th>
-          <th scope="col">Details</th>
-        </tr>
-      </thead>
-      <tbody>
-    <% @students_without_stay.each do |student| %>
-      <tr>
-        <th scope="row"><%= student.id %></th>
-        <td><%=student.first_name %> <%=student.last_name %></td>
-        <td><%=student.arrival_in_hawaii.strftime("%e %B %Y") %></td>
-        <td><%=student.departure_from_hawaii.strftime("%e %B %Y") %></td>
-        <td><%= link_to "View more", student_path(student) %></td>
-      </tr>
+    <% if @students_without_stay.any? %>
+      <h4 class="text-center pb-3">These students do not yet have a stay confirmed and need your attention:</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Arrival Date</th>
+            <th scope="col">Departure Date</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @students_without_stay.each do |student| %>
+            <tr>
+              <th scope="row"><%= student.id %></th>
+              <td><%=student.first_name %> <%=student.last_name %></td>
+              <td><%=student.arrival_in_hawaii.strftime("%e %B %Y") %></td>
+              <td><%=student.departure_from_hawaii.strftime("%e %B %Y") %></td>
+              <td><%= link_to "View more", student_path(student) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <h4 class="text-center pb-3">All students are currently placed with a host. Great job!</h4>
     <% end %>
-  </tbody>
-  </table>
   </div>
-
 </div>

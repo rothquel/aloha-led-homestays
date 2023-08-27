@@ -8,6 +8,7 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
     @age = @student.calculate_age
+    @potential_hosts = find_potential_hosts(@student)
   end
 
   def new
@@ -48,5 +49,15 @@ class StudentsController < ApplicationController
 
   def student_params
     params.require(:student).permit(:first_name, :last_name, :gender, :date_of_birth, :home_address, :email, :phone_number, :line_account, :occupation, :school_in_japan, :program_in_hawaii, :emergency_contact_name, :emergency_contact_relationship, :emergency_contact_phone, :emergency_contact_email, :host_family_preferences_kids, :host_family_preferences_pets, :allergies, :allergies_details, :hobbies, :smoker, :arrival_in_hawaii, :arriving_flight_number, :departure_from_hawaii, :returning_flight_number)
+  end
+
+  def find_potential_hosts(student)
+    # Filter hosts based on student preferences
+    potential_hosts = Host.where(smoking_permitted: student.smoker)
+                         .where(pets: student.host_family_preferences_pets)
+                         .where(children: student.host_family_preferences_kids)
+                         .where(student_gender_preference: [student.gender, 'No Preference'])
+
+    potential_hosts
   end
 end

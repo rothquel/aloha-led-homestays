@@ -1,12 +1,13 @@
 <div class="container py-5">
+  <p class="text-center small fw-bold">Student:</p>
   <h1 class="text-center"><%= @student.first_name %> <%= @student.last_name %></h1>
   <h4 class="text-center"><i class="fa-solid fa-phone fa-xs" style="color: #ffdd00;"></i> <%= @student.phone_number %> | <i class="fa-solid fa-envelope fa-xs" style="color: #ffdd00;"></i> <%= @student.email %></h4>
   <p class="text-center"><strong><%= @student.gender %></strong> | <strong>Age:</strong> <%= @age %> years | <strong>DOB:</strong> <%= @student.date_of_birth.strftime("%d/%m/%Y") %></p>
   <div class="text-center">
     <%= link_to "Edit student details", edit_student_path(@student) %> |
-    <%= link_to "Delete student",
+    <%= link_to "Delete student (and any connected stays)",
       student_path(@student),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure? This will also remove any stays the student has"}
     %>
   </div>
 </div>
@@ -75,9 +76,33 @@
         <p><strong>Room:</strong> <%= link_to room.title, room_path(room) %></p>
       <% else %>
     <div class="bg-danger p-5 text-center">
-      <h2 class="pb-3">Stay Details:</h2>
+      <h2>This student doesn't have a stay confirmed yet!</h2>
+      <p class="pb-3"><%= link_to "Create a stay", new_stay_path %></p>
         <!-- Handle the case where the student has no stay -->
-        <p>This student doesn't have a stay confirmed yet!</p>
+        <% if @potential_hosts.any? %>
+          <p><strong>Potential Host Matches:</strong></p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Host Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <!-- Add more columns for host details -->
+              </tr>
+            </thead>
+            <tbody>
+              <% @potential_hosts.each do |host| %>
+                <tr>
+                  <td><%= link_to "#{host.first_name} #{host.last_name}", host_path(host) %></td>
+                  <td><%= host.home_phone_number %></td>
+                  <td><%= host.email %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <p><strong>There are no host matches for this student's preferences</strong></p>
+        <% end %>
       <% end %>
     </div>
   </div>

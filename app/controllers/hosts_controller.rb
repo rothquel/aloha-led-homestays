@@ -5,6 +5,7 @@ class HostsController < ApplicationController
 
   def show
     @host = Host.find(params[:id])
+    @age = @host.calculate_age
   end
 
   def new

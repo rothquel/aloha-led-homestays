@@ -9,6 +9,10 @@
           <th scope="col">Last Name</th>
           <th scope="col">Email Address</th>
           <th scope="col">Phone Number</th>
+          <th scope="col">Has pets</th>
+          <th scope="col">Has kids</th>
+          <th scope="col">Accept Smoker</th>
+          <th scope="col">Preferred Gender</th>
           <th scope="col">Details</th>
         </tr>
       </thead>
@@ -20,6 +24,22 @@
             <td><%=host.last_name %></td>
             <td><%=host.email %></td>
             <td><%=host.home_phone_number %></td>
+            <td><% if host.pets == true %>
+                  <i class="fa-solid fa-circle-check" style="color: #1EDD88;"></i>
+                <% else %>
+                  <i class="fa-solid fa-circle-xmark" style="color: #FD1015;"></i>
+                <% end %></td>
+            <td><% if host.children == true %>
+                  <i class="fa-solid fa-circle-check" style="color: #1EDD88;"></i>
+                <% else %>
+                  <i class="fa-solid fa-circle-xmark" style="color: #FD1015;"></i>
+                <% end %></td>
+            <td><% if host.smoking_permitted == true %>
+                  <i class="fa-solid fa-circle-check" style="color: #1EDD88;"></i>
+                <% else %>
+                  <i class="fa-solid fa-circle-xmark" style="color: #FD1015;"></i>
+                <% end %></td>
+            <td><%= host.student_gender_preference %></td>
             <td><%= link_to "View more", host_path(host) %></td>
           </tr>
         <% end %>
