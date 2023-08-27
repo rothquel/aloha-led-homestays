@@ -1,4 +1,6 @@
 class HostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :create ]
+
   def index
     @hosts = Host.all
   end
@@ -14,8 +16,16 @@ class HostsController < ApplicationController
 
   def create
     @host = Host.new(host_params)
-    @host.save
-    redirect_to new_host_room_path(host_id: @host.id)
+    if @host.save
+      if user_signed_in?
+        redirect_to new_host_room_path(host_id: @host.id)
+      else
+        session[:new_host_id] = @host.id
+        redirect_to room_form_path
+      end
+    else
+      render 'new'
+    end
   end
 
   def edit

@@ -1,0 +1,31 @@
+<div class="container py-5">
+  <h1 class="text-center pb-3">It's like a match made in heaven!</h1>
+  <h3 class="text-center"><span class="fw-bold">Stay dates:</span> <%= @stay.student.arrival_in_hawaii.strftime("%B %e %Y") %> - <%= @stay.student.departure_from_hawaii.strftime("%B %e %Y") %></h3>
+  <div class="row py-5">
+      <div class="col-md-4">
+        <div class="bg-light p-4 text-center">
+          <h3>Student</h3>
+          <h5><%= link_to "#{@stay.student.first_name} #{@stay.student.last_name}", student_path(@stay.student) %></h5>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-light p-4 text-center">
+          <h3>Host</h3>
+          <h5><%= link_to "#{@stay.host.first_name} #{@stay.host.last_name}", host_path(@stay.host) %></h5>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="bg-light p-4 text-center">
+           <h3>Room</h3>
+          <h5><%= link_to @stay.room.title, room_path(@stay.room) %></h5>
+        </div>
+      </div>
+    </div>
+  <div class="text-center">
+    <%= link_to "Edit stay", edit_stay_path(@stay) %> |
+    <%= link_to "Delete stay",
+      stay_path(@stay),
+      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+    %>
+  </div>
+</div>

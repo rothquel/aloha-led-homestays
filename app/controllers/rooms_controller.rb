@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :create ]
+
   def index
     @rooms = Room.all
   end
@@ -13,11 +15,21 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @host = Host.find(params[:host_id])
-    @room = Room.new(room_params)
-    @room.host = @host
+    if user_signed_in?
+      @host = Host.find(params[:host_id])
+      @room = Room.new(room_params)
+      @room.host = @host
+    else
+      @host_id = session[:new_host_id]
+      @room = Room.new(room_params.merge(host_id: @host_id))
+    end
+
     if @room.save
-      redirect_to room_path(@room)
+      if user_signed_in?
+        redirect_to room_path(@room)
+      else
+        redirect_to student_success_path
+      end
     else
       render 'rooms/new', status: :unprocessable_entity
     end

@@ -19,6 +19,10 @@ class StaysController < ApplicationController
     redirect_to stays_path(@stay)
   end
 
+  def edit
+    @stay = Stay.find(params[:id])
+  end
+
   def update
     @stay = Stay.find(params[:id])
     if @stay.update(stay_params)

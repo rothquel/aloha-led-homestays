@@ -56,7 +56,7 @@ class StudentsController < ApplicationController
     potential_hosts = Host.where(smoking_permitted: student.smoker)
                          .where(pets: student.host_family_preferences_pets)
                          .where(children: student.host_family_preferences_kids)
-                         .where(student_gender_preference: [student.gender, 'No Preference'])
+                         .where(student_gender_preference: [student.gender, "No preference"])
 
     potential_hosts
   end

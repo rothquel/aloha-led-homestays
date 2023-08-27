@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :student, :host, :success ]
+  skip_before_action :authenticate_user!, only: [ :home, :student, :host, :success, :room ]
 
   layout 'home'
 
@@ -17,6 +17,11 @@ class PagesController < ApplicationController
 
   def host
     @host = Host.new
+  end
+
+  def room
+    @host_id = session[:new_host_id]
+    @room = Room.new(host_id: @host_id)
   end
 
   def success
