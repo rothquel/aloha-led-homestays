@@ -26,9 +26,9 @@ class RoomsController < ApplicationController
 
     if @room.save
       if user_signed_in?
-        redirect_to host_path(@host)
+        redirect_to room_path(@room)
       else
-        redirect_to student_success_path
+        redirect_to host_success_path
       end
     else
       render 'rooms/new', status: :unprocessable_entity
@@ -57,6 +57,6 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:title, :description, :private_room, :bathroom, :location_in_house)
+    params.require(:room).permit(:title, :description, :private_room, :bathroom, :location_in_house, :number_of_rooms)
   end
 end
