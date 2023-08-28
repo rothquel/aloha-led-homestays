@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home, :student, :host, :success, :room ]
+  skip_before_action :authenticate_user!, only: [ :home, :student, :host, :success, :room, :host_success ]
 
   layout 'home'
 
@@ -25,6 +25,9 @@ class PagesController < ApplicationController
   end
 
   def success
+  end
+
+  def host_success
   end
 
   def dashboard

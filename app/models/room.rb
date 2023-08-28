@@ -2,6 +2,8 @@ class Room < ApplicationRecord
   belongs_to :host
   has_many :stays
 
+  attr_accessor :number_of_rooms
+
   before_create :set_default_title
 
   private

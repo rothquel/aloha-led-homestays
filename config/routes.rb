@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/room-form', to: 'pages#room', as: 'room-form'
   get '/host-form', to: 'pages#host', as: 'host-form'
   get '/student-success', to: 'pages#success', as: 'student-success'
+  get '/host-success', to: 'pages#host_success', as: 'host-success'
   post '/student-form', to: 'students#create'
   post '/host-form', to: 'hosts#create'
   post '/room-form', to: 'rooms#create'

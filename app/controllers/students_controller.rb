@@ -52,11 +52,28 @@ class StudentsController < ApplicationController
   end
 
   def find_potential_hosts(student)
+    # Start with all hosts
+    potential_hosts = Host.all
+
     # Filter hosts based on student preferences
-    potential_hosts = Host.where(smoking_permitted: student.smoker)
-                         .where(pets: student.host_family_preferences_pets)
-                         .where(children: student.host_family_preferences_kids)
-                         .where(student_gender_preference: [student.gender, "No preference"])
+    if student.smoker
+      # If student is a smoker, find hosts that allow smoking
+      potential_hosts = potential_hosts.where(smoking_permitted: true)
+    end
+
+    if !student.host_family_preferences_pets
+      # If student prefers no pets, find hosts with no pets
+      potential_hosts = potential_hosts.where(pets: false)
+    end
+
+    if !student.host_family_preferences_kids
+      # If student prefers no kids, find hosts with no kids
+      potential_hosts = potential_hosts.where(children: false)
+    end
+
+    # Gender preference: Include matches for the student's gender and "No preference"
+    gender_preference = [student.gender, "No preference"]
+    potential_hosts = potential_hosts.where(student_gender_preference: gender_preference)
 
     potential_hosts
   end

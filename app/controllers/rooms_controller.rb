@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
 
     if @room.save
       if user_signed_in?
-        redirect_to room_path(@room)
+        redirect_to host_path(@host)
       else
         redirect_to student_success_path
       end
