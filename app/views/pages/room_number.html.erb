@@ -1,0 +1,10 @@
+<div data-controller="room-form">
+  <%= simple_form_for(@host) do |f| %>
+  <%= f.label :student_capacity, "Number of Rooms", class: "pb-2" %>
+            <%= f.input_field :student_capacity,
+                  :collection => 1..10,
+                  class: "form-control",
+                  data: { action: "input->room-form#generateRoomForms" } %>
+    <%= f.submit class: "btn btn-warning" %>
+  <% end %>
+</div>

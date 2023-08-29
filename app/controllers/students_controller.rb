@@ -48,7 +48,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :gender, :date_of_birth, :home_address, :email, :phone_number, :line_account, :occupation, :school_in_japan, :program_in_hawaii, :emergency_contact_name, :emergency_contact_relationship, :emergency_contact_phone, :emergency_contact_email, :host_family_preferences_kids, :host_family_preferences_pets, :allergies, :allergies_details, :hobbies, :smoker, :arrival_in_hawaii, :arriving_flight_number, :departure_from_hawaii, :returning_flight_number)
+    params.require(:student).permit(:first_name, :last_name, :gender, :date_of_birth, :home_address, :email, :phone_number, :line_account, :occupation, :school_in_japan, :program_in_hawaii, :emergency_contact_name, :emergency_contact_relationship, :emergency_contact_phone, :emergency_contact_email, :host_family_preferences_kids, :host_family_preferences_pets, :allergies, :allergies_details, :hobbies, :smoker, :arrival_in_hawaii, :arriving_flight_number, :departure_from_hawaii, :returning_flight_number, :airport_transfer, :school_transport)
   end
 
   def find_potential_hosts(student)
