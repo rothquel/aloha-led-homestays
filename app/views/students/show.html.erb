@@ -43,6 +43,7 @@
       <p class="text-center"><strong>Arrival flight number:</strong> <%= @student.arriving_flight_number %>
       <p class="text-center"><strong>Departure date from Hawaii:</strong> <%= @student.departure_from_hawaii %>
       <p class="text-center"><strong>Departure flight number:</strong> <%= @student.returning_flight_number %>
+      <p class="text-center"><strong>Airport pickup requested:</strong> <%= @student.airport_transfer %>
     </div>
 
     <!-- Second Half -->
@@ -52,6 +53,7 @@
       <p class="text-center"><strong>Smoker:</strong> <%= @student.smoker ? 'Yes' : 'No' %>
       <p class="text-center"><strong>OK with other children in house:</strong> <%= @student.host_family_preferences_kids ? 'Yes' : 'No' %>
       <p class="text-center"><strong>OK with pets in house:</strong> <%= @student.host_family_preferences_pets ? 'Yes' : 'No' %>
+      <p class="text-center"><strong>Daily school transport requested:</strong> <%= @student.school_transport %>
     </div>
   </div>
 </div>

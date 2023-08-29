@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_28_035030) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_29_014145) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,6 +97,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_035030) do
     t.string "returning_flight_number"
     t.boolean "host_family_preferences_kids"
     t.boolean "host_family_preferences_pets"
+    t.boolean "airport_transfer"
+    t.boolean "school_transport"
   end
 
   create_table "users", force: :cascade do |t|

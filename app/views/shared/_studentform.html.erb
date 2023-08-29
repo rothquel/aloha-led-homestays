@@ -103,5 +103,21 @@
   <%= f.input :arriving_flight_number %>
   <%= f.input :departure_from_hawaii %>
   <%= f.input :returning_flight_number %>
+    <div class="row">
+    <div class="col-md-6">
+      <%= f.input :airport_transfer,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            :label => "Airport greeting" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :school_transport,
+            :as => :select,
+            :collection => [['Yes',true],['No',false]],
+            :include_blank => false,
+            :label => "School transport" %>
+    </div>
+  </div>
   <%= f.submit class: "btn btn-warning" %>
 <% end %>
