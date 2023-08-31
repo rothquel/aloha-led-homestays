@@ -5,6 +5,7 @@ class StudentMailer < ApplicationMailer
   end
 
   def welcome(student)
-    mail(to: student.email, subject: "Thank you for applying to stay with us!")
+    @student = student
+    mail(to: @student.email, subject: "Thank you for applying to stay with us!")
   end
 end
