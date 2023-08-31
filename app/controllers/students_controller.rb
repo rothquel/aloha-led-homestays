@@ -18,6 +18,7 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
+      StudentMailer.welcome(@student).deliver_now
       # Check if the referrer is the student form page
       if user_signed_in?
         redirect_to student_path(@student) # Redirect to a different page if needed
